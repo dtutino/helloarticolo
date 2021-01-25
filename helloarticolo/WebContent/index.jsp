@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>Benvenuto nella mia pagina di benvenuto!</h1>
 
+<% if(request.getAttribute("messaggioDiErrore") != null){ %>
+		<p style="color: red;"><%=request.getAttribute("messaggioDiErrore") %></p>
+	<%  }else{ %>
+ 	<%}    %> 
+
+<a href="ListaArticoliServlet">Lista Articoli</a>
+<br>
+<a href="RicercaPerNomeServlet">Ricerca per nome</a> <p>Presto disponibile!</p>
+<br>
+<a href="CarrelloServlet">Carrello</a><p>Presto disponibile!</p>
 </body>
 </html>

@@ -8,6 +8,8 @@ import it.helloarticolo.model.Articolo;
 public class DB_Mock {
 
 	public static final List<Articolo> LISTA_ARTICOLI = new ArrayList<>();
+	
+	public static final List<Articolo> CARRELLO = new ArrayList<>();
 
 	static {
 		// preparo una lista mock perché ancora non ho il collegamento alla
