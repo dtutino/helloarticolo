@@ -18,20 +18,21 @@ import it.helloarticolo.service.articolo.ArticoloService;
 public class ListaArticoliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticoloService articoloServiceInstance = MyServiceFactory.getArticoloServiceInstance();
-       
-    public ListaArticoliServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-String destinazione = null;
-		
+	public ListaArticoliServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String destinazione = null;
+
 		try {
 			List<Articolo> listaArticoli = articoloServiceInstance.list();
 			if (listaArticoli.isEmpty()) {
 				String messaggioDaInviareAPagina = "La lista degli articoli attualmente non è disponibile, riprovare più tardi.";
-				request.setAttribute("messaggioDIErrore", messaggioDaInviareAPagina);
+				request.setAttribute("messaggioDiErrore", messaggioDaInviareAPagina);
 				destinazione = "index.jsp";
 			} else {
 				request.setAttribute("listaDaInviare", listaArticoli);
@@ -44,7 +45,9 @@ String destinazione = null;
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		
 		
 	}

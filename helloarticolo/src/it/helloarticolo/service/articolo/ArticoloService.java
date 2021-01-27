@@ -9,6 +9,8 @@ public interface ArticoloService {
 	public void setArticoloDAO(ArticoloDAO articoloDAO);
 
 	public List<Articolo> list() throws Exception;
+	
+	public List<Articolo> listCarrello() throws Exception;
 
 	public Articolo get(Long idInput) throws Exception;
 
@@ -17,4 +19,10 @@ public interface ArticoloService {
 	public int insert(Articolo articoloInput) throws Exception;
 
 	public int delete(Articolo articoloInput) throws Exception;
+	
+	public int aggiungiACarrello(Articolo articoloInput) throws Exception;
+	
+	public int rimuoviDaCarrello(Articolo articoloInput) throws Exception;
+	
+	public int totaleCarrello() throws Exception;
 }

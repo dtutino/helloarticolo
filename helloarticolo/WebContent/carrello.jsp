@@ -16,21 +16,29 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<title>Vista Articoli</title>
+<title>Carrello</title>
 </head>
 <body>
+
 	<div class="container">
 		<%
-			if (request.getAttribute("messaggioConfermaDaInviare") != null) {
+			if (request.getAttribute("messaggioDiErrore") != null) {
 		%>
-		<p style="color: green;"><%=request.getAttribute("messaggioConfermaDaInviare")%></p>
+		<p style="color: red;"><%=request.getAttribute("messaggioDiErrore")%></p>
 		<%
 			} else if (request.getAttribute("messaggioErroreDaInviare") != null) {
 		%>
 		<p style="color: red;"><%=request.getAttribute("messaggioErroreDaInviare")%></p>
 		<%
-			}
+			} else if (request.getAttribute("messaggioConfermaDaInviare") != null) {
 		%>
+		<p style="color: green;"><%=request.getAttribute("messaggioConfermaDaInviare")%></p>
+		<%
+			} else { 
+		%>
+		<h5>Questo è il tuo carrello</h5>
+		<%} %>
+		
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -38,16 +46,14 @@
 					<th scope="col">Modello</th>
 					<th scope="col">Prezzo</th>
 					<th scope="col">Azioni</th>
-					<th scope="col"><a class="btn btn-danger" href="index.jsp"
-						role="button">Indietro</a>
 				</tr>
 			</thead>
 			<tbody>
 
 				<%
 					List<Articolo> listaDaServlet = new ArrayList<Articolo>();
-					if (request.getAttribute("listaDaInviare") != null) {
-						listaDaServlet = (List<Articolo>) request.getAttribute("listaDaInviare");
+					if (request.getAttribute("listaCarrelloDaInviare") != null) {
+						listaDaServlet = (List<Articolo>) request.getAttribute("listaCarrelloDaInviare");
 					}
 					for (Articolo articoloItem : listaDaServlet) {
 				%>
@@ -59,17 +65,22 @@
 						href="VisualizzaDettaglioServlet?idDaInviareComeParametro=<%=articoloItem.getIdArticolo()%>"
 						role="button">Dettaglio</a>
 						<form
-							action="CarrelloServlet?idDaInviareComeParametro=<%=articoloItem.getIdArticolo()%>"
+							action="RimozioneDalCarrelloServlet?idDaInviareComeParametro=<%=articoloItem.getIdArticolo()%>"
 							method="post">
-							<input type="submit" class="btn btn-success"
-								value="Aggiungi al carrello">
+							<input type="submit" class="btn btn-danger"
+								value="Rimuovi dal carrello">
 						</form></td>
 				</tr>
 				<%
 					}
 				%>
-			</tbody>
-		</table>
-	</div>
+				<%
+					int totaleCarrello = (int) request.getAttribute("totaleCarrello");
+				%>
+				<tr>
+					<h3>
+						Totale =
+						<%=totaleCarrello%></h3>
+				</tr>
 </body>
 </html>

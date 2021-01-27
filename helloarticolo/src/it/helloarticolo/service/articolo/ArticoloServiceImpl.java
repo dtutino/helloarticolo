@@ -26,6 +26,17 @@ public class ArticoloServiceImpl implements ArticoloService {
 			throw e;
 		}
 	}
+	
+	public List<Articolo> listCarrello() throws Exception {
+		try {
+
+			return articoloDAO.listCarrello();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 
 	@Override
 	public Articolo get(Long idInput) throws Exception {
@@ -68,6 +79,39 @@ public class ArticoloServiceImpl implements ArticoloService {
 		try {
 
 			return articoloDAO.delete(articoloInput);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int aggiungiACarrello(Articolo articoloInput) throws Exception {
+		try {
+
+			return articoloDAO.addToCarrello(articoloInput);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int rimuoviDaCarrello(Articolo articoloInput) throws Exception {
+		try {
+
+			return articoloDAO.removeFromCarrello(articoloInput);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int totaleCarrello() throws Exception {
+		try {
+
+			return articoloDAO.totaleImportoCarrello();
 
 		} catch (Exception e) {
 			e.printStackTrace();

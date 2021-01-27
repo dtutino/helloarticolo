@@ -18,6 +18,6 @@
 <br>
 <a href="RicercaPerNomeServlet">Ricerca per nome</a> <p>Presto disponibile!</p>
 <br>
-<a href="CarrelloServlet">Carrello</a><p>Presto disponibile!</p>
+<a href="CarrelloServlet">Carrello</a>
 </body>
 </html>

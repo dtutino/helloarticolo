@@ -19,6 +19,10 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 	public List<Articolo> list() throws Exception {
 		return DB_Mock.LISTA_ARTICOLI;
 	}
+	
+	public List<Articolo> listCarrello() throws Exception {
+		return DB_Mock.CARRELLO;
+	}
 
 	@Override
 	public Articolo get(Long id) throws Exception {
@@ -62,6 +66,34 @@ public class ArticoloDAOImpl implements ArticoloDAO {
 		
 		this.list().remove(input);
 		return 1;
+	}
+	
+	public int addToCarrello(Articolo input) throws Exception {
+		if (input == null)
+			return 0;
+		
+		DB_Mock.CARRELLO.add(input);
+		return 1;
+	}
+	
+	public int removeFromCarrello(Articolo input) throws Exception {
+		if (input == null)
+			return 0;
+		if (DB_Mock.CARRELLO.contains(input)) {
+			DB_Mock.CARRELLO.remove(input);
+			return 1;
+		} 
+		return 0;
+	}
+	
+	public int totaleImportoCarrello() throws Exception {
+		int totale = 0;
+		
+		for (Articolo articoloItem : DB_Mock.CARRELLO) {
+			totale += articoloItem.getPrezzo();
+		}
+		
+		return totale;
 	}
 
 }
